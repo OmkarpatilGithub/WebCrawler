@@ -8,6 +8,14 @@ async function crawlpage(currenturl){
         console.log('Error in fetch with status code: '+resp.status+' on page: '+currenturl)
     return
     }
+
+    const contentType=resp.headers.get("content-type")
+    if(!contentType.includes("text/html")){
+        console.log('It is not a html text its content type is '+contentType)
+        return
+    }
+
+
     console.log(await resp.text())
 
    }catch(err){
